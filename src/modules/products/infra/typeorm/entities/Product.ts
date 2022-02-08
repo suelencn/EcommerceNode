@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import Category from "../../../../categories/infra/typeorm/entities/Category";
+import OrderProduct from "../../../../orders/infra/typeorm/entities/OrderProduct";
 
 export default class Product{
     @PrimaryGeneratedColumn("increment")
@@ -24,8 +25,8 @@ export default class Product{
     @JoinColumn({ name: "categoria_id"})
     categoria: Category; //Representa a Categoria
 
-    /* @OneToMany(() => OrderProduct, (order_product) => order_product.produto)
-    pedido_produtos: OrderProduct[]; */
+    @OneToMany(() => OrderProduct, (order_product) => order_product.produto)
+    pedido_produtos: OrderProduct[];
 
     @CreateDateColumn({ select: false })
     created_at: Date;
