@@ -17,7 +17,7 @@ export default class CreateOrderService {
     }
     //Verifica detalhes sobre o pedido e produto
     for(let i=0; i< data.pedido_produtos.length; i++){
-      if(data.pedido_produtos[i].quantidade && data.pedido_produtos[i].produto_id ){
+      if(data.pedido_produtos[i].quantidade > 0 && data.pedido_produtos[i].produto_id ){
         const product = await productRepository.findById(data.pedido_produtos[i].produto_id);
 
         if(product){
