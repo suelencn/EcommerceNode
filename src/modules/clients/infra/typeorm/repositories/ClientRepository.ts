@@ -2,7 +2,6 @@ import IClientDTO from "../../../dtos/IClientDTO";
 import IClientRepository from "../../../repositories/IClientRepository";
 import { DeleteResult, getRepository, Repository } from "typeorm";
 import Client from "../entities/Client";
-import Order from "../../../../orders/infra/typeorm/entities/Order";
 
 export default class ClientRepository implements IClientRepository {
     private ormRepository: Repository <Client>;
@@ -31,5 +30,4 @@ export default class ClientRepository implements IClientRepository {
         const client = this.ormRepository.create(data);
         return this.ormRepository.save(client);
     }
-    
 }

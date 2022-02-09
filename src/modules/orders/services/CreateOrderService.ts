@@ -8,7 +8,7 @@ export default class CreateOrderService {
   public async execute(data: IOrderDTO): Promise<Order> {
     const orderRepository = new OrderRepository();
 
-    const order = await orderRepository.create(data);
+    var total;
 
     const productRepository = new ProductRepository();
 
@@ -17,24 +17,23 @@ export default class CreateOrderService {
     }
     //Verifica detalhes sobre o pedido e produto
     for(let i=0; i< data.pedido_produtos.length; i++){
-      if(data.pedido_produtos[i].quantidade > 0 && data.pedido_produtos[i].produto_id ){
-        const product = await productRepository.findById(data.pedido_produtos[i].produto_id);
-
-        if(product){
-          //Calcula o valor total do pedido
-          if(product.quantidade > data.pedido_produtos[i].quantidade){
-            var total =+ (data.pedido_produtos[i].quantidade * product?.preco);
-            order.valor = total;
-          }
+      const product = await productRepository.findById(data.pedido_produtos[i].produto_id);
+      if(product){
+        if(data.pedido_produtos[i].quantidade <=0 ){
+          throw new AppError("Quantidade inválida!");
         }
-        if(!product){
-          throw new AppError("O produto não está cadastrado!");
+        if(product.quantidade > data.pedido_produtos[i].quantidade){
+          total =+ (data.pedido_produtos[i].quantidade * product?.preco);
         }
-
       } else {
-        throw new AppError("Informe quantidade E Id do produto!");
+        throw new AppError("O produto informado não está cadastrado!");
       }     
     }
+
+    data.valor = total;
+
+    const order = await orderRepository.create(data);
+
     return order;
   }
 }
