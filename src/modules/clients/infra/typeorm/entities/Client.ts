@@ -23,6 +23,9 @@ export default class Client{
     @Column()
     data_nascimento: string;
 
+    @Column()
+    cpf: string;
+
     @CreateDateColumn()
     created_at: Date;
 

@@ -4,4 +4,5 @@ export default interface IClientDTO {
     email?: string;
     telefone: string;
     data_nascimento: string;
+    cpf: string;
 }
