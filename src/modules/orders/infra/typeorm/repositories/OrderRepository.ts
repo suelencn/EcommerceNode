@@ -10,7 +10,22 @@ export default class OrderRepository implements IOrderRepository {
     this.ormRepository = getRepository(Order);
   }
 
+  async clientOrders(id: number): Promise<Order[]> {
+    const pedidos = await this.ormRepository.find({
+         where: {
+              cliente_id: id,
+         },
+    });
+    return pedidos;
+  }
+
   async findById(id: number): Promise<Order | undefined> {
+    /* const pedido = await this.ormReposotory.findOne(id, {
+      relations: ["produtos"],
+    });
+
+    return pedido; */
+
     return this.ormRepository
       .createQueryBuilder("order")
       .leftJoinAndSelect("order.pedido_produtos", "pp")

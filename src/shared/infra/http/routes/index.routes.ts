@@ -10,6 +10,6 @@ const routes = Router();
 routes.use("/clientes", clientsRoutes);
 routes.use("/categorias", categoriesRoutes);
 routes.use("/produtos", productsRoutes);
-routes.use("/orders", ordersRoutes);
+routes.use("/pedidos", ordersRoutes);
 
 export default routes;

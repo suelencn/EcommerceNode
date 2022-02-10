@@ -1,5 +1,4 @@
 import { DeleteResult } from "typeorm";
-import Order from "../../orders/infra/typeorm/entities/Order";
 import IClientDTO from "../dtos/IClientDTO";
 import Client from "../infra/typeorm/entities/Client";
 
