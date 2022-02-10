@@ -12,7 +12,7 @@ http://localhost:3333/clientes:
   DEL "/id" - Delete Cliente by Id
   
 -----------------------------------------
-http://localhost:3333/categorias
+http://localhost:3333/categorias:
 
   GET "/" - Find All Categories
   GET "/id" - Find Category by Id
@@ -20,7 +20,7 @@ http://localhost:3333/categorias
   PUT "/id" - Update Category by Id
   
 -----------------------------------------
-http://localhost:3333/produtos
+http://localhost:3333/produtos:
 
   GET "/" - Find All Products
   GET "/id" - Find Product by Id
@@ -28,7 +28,7 @@ http://localhost:3333/produtos
   PUT "/id" - Update Product by Id
 
 ----------------------------------------
-http://localhost:3333/pedidos
+http://localhost:3333/pedidos:
 
   GET "/id" - Find Order by Id
   POST "/" - Create Order
